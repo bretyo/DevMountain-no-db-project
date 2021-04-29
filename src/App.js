@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(){
+    super();
+
+    this.state = {
+      entryItems : {
+        noun1: 'bird',
+        verb1: 'fly',
+        noun2: 'snake',
+        verb2: 'fight'
+      },
+
+      passage: `Watch the NOUN1 VERB1 with the NOUN2. Surely they will VERB2 later`
+    }
+  }
+
+
+  loadPassage=()=>{
+    let psg = this.state.passage;
+      for (const key in this.state.entryItems) {
+        psg = psg.replace(key.toUpperCase(), this.state.entryItems[key])
+      }
+    return psg;
+  }
+
+  render(){
+    console.log(this.state.entryItems.nouns)
+    let psg = this.loadPassage()
+    return (
+      <div className="App">
+        <h2>{psg}</h2>
+      </div>
+    );
+  }
 }
 
 export default App;
