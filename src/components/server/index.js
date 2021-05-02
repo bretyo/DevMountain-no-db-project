@@ -8,6 +8,7 @@ app.use(express.json());
 const baseURL = '/api/madLibs'
 // Get
 app.get(baseURL, madLibCtrl.getMadLibs);
+app.get(baseURL + `/:id`, madLibCtrl.getMadLib)
 app.get(baseURL + `Finished`, madLibCtrl.getFinishedMadLibs)
 // Delete
 app.delete(baseURL + `/:id`, madLibCtrl.deleteMadLib)

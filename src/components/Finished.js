@@ -1,8 +1,8 @@
-function Finished(){
+function Finished(props){
 
     return(
-        <div>
-            FINISHED
+        <div className='finished'>
+            <p>{props.passage}</p>
         </div>
     )
 }

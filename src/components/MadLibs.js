@@ -12,7 +12,7 @@ class MadLibs extends Component {
     this.state = {
         madLibs: [],
         madLibsFinished: [],
-        madLibStarted: true,
+        madLibStarted: false,
         madLibSelected: {}
     }
   }
@@ -31,6 +31,8 @@ class MadLibs extends Component {
 
   getMadLib=(id)=>{
       axios.get(`/api/madLibs/${id}`)
+      .then(res=>this.setState({ madLibSelected: res.data }))
+      .catch(err=>console.log(err))
   }
 
   deleteFinishedMadLib=(id)=>{
@@ -66,10 +68,17 @@ class MadLibs extends Component {
 
   render(){
     const {madLibStarted, madLibSelected} = this.state;
-    console.log(madLibStarted)
     return(
         <div className='madLibsMain'>
-            {!madLibStarted? <Menu toggleStarted={this.toggleStarted} deleteFinished={this.deleteFinishedMadLib} state={this.state} /> : <MadLib/>}
+            {!madLibStarted? <Menu 
+                                toggleStarted={this.toggleStarted} 
+                                deleteFinished={this.deleteFinishedMadLib} 
+                                state={this.state} 
+                                    /> 
+                            : <MadLib
+                                madLib={this.state.madLibSelected}
+                                toggleStarted={this.toggleStarted}
+                                />}
         </div>
     )
   }

@@ -24,8 +24,7 @@ class Entry extends Component{
 
         return(
             <div>
-                <label>{this.props.wordType}</label>
-                <input value={this.state.inputVal} onChange={e=>this.setState({inputVal: e.target.value})} />
+                {this.props.wordType}<input value={this.state.inputVal} onChange={e=>this.setState({inputVal: e.target.value})} /> 
             </div>
         )
     }

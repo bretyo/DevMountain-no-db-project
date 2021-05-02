@@ -44,14 +44,14 @@ module.exports = {
         res.status(200).send(madLibs);
     },
 
-    // getMadLib : (req, res)=>{
-    //     const {id} = req.params
-    //     const index = madLibs.findIndex(element=>element.id === +id)
-    //     if(index === -1){
-    //         return res.status(500).send('couldn\'t find Id')
-    //     }
-    //     res.status(200).send(madLibs[index]);
-    // },
+    getMadLib : (req, res)=>{
+        const {id} = req.params
+        const index = madLibs.findIndex(element=>element.id === +id)
+        if(index === -1){
+            return res.status(500).send('couldn\'t find Id')
+        }
+        res.status(200).send(madLibs[index]);
+    },
 
     getFinishedMadLibs : (req, res)=>{
         res.status(200).send(madLibsFinished)
