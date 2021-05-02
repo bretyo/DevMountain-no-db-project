@@ -51,6 +51,10 @@ h1{
   justify-content: space-evenly;
 }
 
+.entry > p{
+  margin: 0;
+}
+
 .finished{
   margin-top: 20px;
   background-color: rgb(98, 160, 129);

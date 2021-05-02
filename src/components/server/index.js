@@ -10,6 +10,7 @@ const baseURL = '/api/madLibs'
 app.get(baseURL, madLibCtrl.getMadLibs);
 app.get(baseURL + `/:id`, madLibCtrl.getMadLib)
 app.get(baseURL + `Finished`, madLibCtrl.getFinishedMadLibs)
+app.get(baseURL + `Finished/:id`, madLibCtrl.getFinishedMadLib)
 // Delete
 app.delete(baseURL + `/:id`, madLibCtrl.deleteMadLib)
 app.delete(baseURL + `Finished/:id`, madLibCtrl.deleteFinishedMadLib)

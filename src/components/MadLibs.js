@@ -35,8 +35,15 @@ class MadLibs extends Component {
       .catch(err=>console.log(err))
   }
 
+    // Necessary for reloading the ID
+    getFinishedMadLib=(id)=>{
+    axios.get(`/api/madLibsFinished/${id}`)
+    .then(res=>this.setState({ madLibSelected: res.data }))
+    .catch(err=>console.log(err))
+}
+
   deleteFinishedMadLib=(id)=>{
-      axios.delete(`/api/madLibsFinished/${id}`)
+      axios.delete(`/api/madLibsFinished${id}`)
       .then(res=>this.setState({ madLibsFinished: res.data }))
       .catch(err=>console.log(err))
   }
@@ -58,13 +65,43 @@ class MadLibs extends Component {
     this.getMadLib(0);
   }
 
-  toggleStarted=(madLib)=>{
-    this.setState({ madLibSelected: madLib, madLibStarted: !this.state.madLibStarted })
+  toggleStarted=(madLib, libType)=>{
+    if(libType === 'new') {
+        console.log(this.state.madLibsFinished.length)
+        console.log(madLib.id)
+        madLib.id = this.state.madLibsFinished.length; 
+        this.addFinishedMadLib(madLib)
+        this.setState({ madLibSelected: madLib})
+    }
+    else {
+        console.log(this.state.madLibsFinished.length)
+        console.log(madLib.id)
+        this.editFinishedMadLib(madLib.id, madLib)
+    }
+    // this.getFinishedMadLib(this.state.madLibsFinished.length)
+    this.setState({ madLibStarted: !this.state.madLibStarted })
   }
 
   selectMadLib=(title)=>{
 
   }
+
+  updateEntry=(index, value)=>{
+      const {id, title, entryItems, passage} = this.state.madLibSelected
+    const newEntryItems = [...this.state.madLibSelected.entryItems]
+    // const key = Object.keys(this.state.madLibSelected.entryItems[index])[0];
+    for (const key in newEntryItems[index]) {
+        newEntryItems[index][key] = value
+    }
+    this.setState({ madLibSelected: 
+        {
+            id: id,
+            title: title,
+            entryItems: newEntryItems,
+            passage: passage
+        }
+    })
+}
 
   render(){
     const {madLibStarted, madLibSelected} = this.state;
@@ -78,6 +115,7 @@ class MadLibs extends Component {
                             : <MadLib
                                 madLib={this.state.madLibSelected}
                                 toggleStarted={this.toggleStarted}
+                                updateEntry={this.updateEntry}
                                 />}
         </div>
     )

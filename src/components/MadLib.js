@@ -11,12 +11,16 @@ class MadLib extends Component{
         }
     }
 
+    componentDidMount(){
+        this.setState({ entryItems: this.props.madLib.entryItems })
+    }
+
     toggleFinished=()=>{
         this.setState({ finished: !this.state.finished })
     }
 
     updateEntry=(index, value)=>{
-
+        this.props.updateEntry(index, value)
     }
 
     loadPassage=()=>{
@@ -32,18 +36,22 @@ class MadLib extends Component{
         }
     }
 
+    handleSave=()=>{
+        console.log(this.props.madLib)
+        this.props.toggleStarted(this.props.madLib, 'saved')
+    }
+
     render(){
 
         let psg = this.loadPassage()
-        console.log(this.props.madLib)
 
         let entries;
         if(this.props.madLib.entryItems){
-            entries = this.props.madLib.entryItems.map(element=>{
+            entries = this.props.madLib.entryItems.map((element, index)=>{
                 for (const key in element) {
-                    return <Entry key={key} wordType={key} />
+                    return <Entry placeholder={element[key]} name={index} updateEntry={this.updateEntry} key={index} wordType={key} />
                 }
-                
+                return null // Added this to get rid of a warning: "Line 42:72:  Array.prototype.map() expects a value to be returned at the end of arrow function  array-callback-return"
             })
         }
 
@@ -53,10 +61,15 @@ class MadLib extends Component{
                 <div className="entries">
                     {entries}
                 </div>
-                : <Finished passage={psg}/>}
+                : <Finished title={this.props.madLib.title} passage={psg}/>}
                 <br/>
-                <button onClick={this.props.toggleStarted} className='mLBtn'>Back To Menu</button>
-                {!this.state.finished?<button onClick={this.toggleFinished} className='mLBtn'>Submit</button> : <button onClick={this.toggleFinished} className='mLBtn'>Edit Mad Lib</button>}
+                <div className='btnsGroup'>
+                    <button onClick={this.props.toggleStarted} className='mLBtn'>Back To Menu</button>
+                    {!this.state.finished?
+                        <button onClick={this.toggleFinished} className='mLBtn'>Submit</button> : 
+                        <button onClick={this.toggleFinished} className='mLBtn'>Edit Mad Lib</button>}
+                    {this.state.finished && <button onClick={this.handleSave}>Save Finished Mad Lib</button>}
+                </div>
             </div>
         )
     }

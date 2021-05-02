@@ -14,9 +14,15 @@ class Menu extends Component{
     selectTitle=(e)=>{
         // console.log(e.target)
         // console.log(+e.target[e.target.options.selectedIndex].id[0])
-        this.setState({ selectedTitle: this.props.state.madLibs[+e.target[e.target.options.selectedIndex].id[0]]})
+        if(this.state.newLib === 'new'){
+            this.setState({ selectedTitle: this.props.state.madLibs[+e.target[e.target.options.selectedIndex].id[0]]})
+        }
+        else{
+            this.setState({ selectedTitle: this.props.state.madLibsFinished[+e.target[e.target.options.selectedIndex].id[0]]})
+        }
     }
 
+    // WEIRD EDGE CASE WHERE CHANGING RADIO BUTTONS DIDN'T RESET THE VALUE OF THE SELECTED TITLE
     reSelectTitle=(e)=>{
         console.log(e.target.value)
         if(e.target.value==='new' && this.state.selectedTitle){
@@ -37,11 +43,10 @@ class Menu extends Component{
         const {state} = this.props;
         let options = this.state.newLib==='new'? state.madLibs : state.madLibsFinished;
         if(options){
-            options = options.map(element=>{
-                return <option id={element.id + 'option'} key={element.id}>{element.title}</option>
+            options = options.map((element, index)=>{
+                return <option id={element.id + 'option'} key={index}>{element.title}</option>
             })
         } 
-
         console.log(this.state.selectedTitle)
         return(
             <div className='menu content'>
@@ -61,7 +66,7 @@ class Menu extends Component{
                 <Sample madLibSelected={this.props.madLibSelected}/>
 
                 {this.state.newLib==='saved' && <button onClick={()=>this.props.deleteFinished(this.state.selectedTitle.id)}>Delete</button>}
-                <button onClick={()=>this.props.toggleStarted(this.state.selectedTitle)}>Start</button>
+                <button onClick={()=>this.props.toggleStarted(this.state.selectedTitle, this.state.newLib)}>Start</button>
             </div>
         )
     }

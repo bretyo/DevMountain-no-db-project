@@ -37,7 +37,8 @@ let madLibsFinished = [
     }
 ]
 
-let id = 1;
+let id = 2;
+let idSaved = 1;
 
 module.exports = {
     getMadLibs : (req, res)=>{
@@ -54,7 +55,17 @@ module.exports = {
     },
 
     getFinishedMadLibs : (req, res)=>{
-        res.status(200).send(madLibsFinished)
+        res.status(200).send(madLibsFinished);
+    },
+
+    getFinishedMadLib : (req, res)=>{
+        const {id} = req.params
+        console.log(id)
+        const index = madLibsFinished.findIndex(element=>element.id === +id)
+        if(index === -1){
+            return res.status(500).send('couldn\'t find Id')
+        }
+        res.status(200).send(madLibsFinished[index]);
     },
 
     deleteMadLib: (req,res)=>{
@@ -81,8 +92,8 @@ module.exports = {
             return    res.status(500).send('Needs a title, entry items, and passage')
         }
 
-        madLibsFinished = [...madLibsFinished, {id, title, entryItems, passage}];
-        id++;
+        madLibsFinished = [...madLibsFinished, {id: idSaved, title, entryItems, passage}];
+        idSaved++;
         res.status(200).send(madLibsFinished)
     },
 

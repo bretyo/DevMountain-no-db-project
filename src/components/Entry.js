@@ -9,6 +9,11 @@ class Entry extends Component{
         }
     }
 
+    handleChange=(value)=>{
+        this.setState({inputVal: value})
+        this.props.updateEntry(this.props.name, value)
+    }
+
     render(){
         // let psg = this.loadPassage()
         // let key = Object.keys(this.state.entryItems[1])
@@ -21,10 +26,10 @@ class Entry extends Component{
         //     return <option key={index}>{element[key]}</option>
         //   }
         // })
-
         return(
-            <div>
-                {this.props.wordType}<input value={this.state.inputVal} onChange={e=>this.setState({inputVal: e.target.value})} /> 
+            <div className='entry'>
+                <p>{this.props.wordType}</p>
+                <input placeholder={this.props.placeholder} value={this.state.inputVal} onChange={e=>this.handleChange(e.target.value)} /> 
             </div>
         )
     }
