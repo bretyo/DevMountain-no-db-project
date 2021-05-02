@@ -9,6 +9,17 @@ let madLibs = [
             {verb_that_ends_in_ing: ''}
         ],
         passage: 'There was a squirrel named %%%%. He always went to the %%%% where he would %%%% really fast. Until a hunter shot him for %%%% too often.'
+    },
+    {
+        id: 1,
+        title: 'The Squirrel',
+        entryItems: [
+            {name: ''},
+            {noun: ''},
+            {verb: ''},
+            {verb_that_ends_in_ing: ''}
+        ],
+        passage: 'There was a squirrel named %%%%. He always went to the %%%% where he would %%%% really fast. Until a hunter shot him for %%%% too often.'
     }
 ]
 
@@ -32,6 +43,15 @@ module.exports = {
     getMadLibs : (req, res)=>{
         res.status(200).send(madLibs);
     },
+
+    // getMadLib : (req, res)=>{
+    //     const {id} = req.params
+    //     const index = madLibs.findIndex(element=>element.id === +id)
+    //     if(index === -1){
+    //         return res.status(500).send('couldn\'t find Id')
+    //     }
+    //     res.status(200).send(madLibs[index]);
+    // },
 
     getFinishedMadLibs : (req, res)=>{
         res.status(200).send(madLibsFinished)

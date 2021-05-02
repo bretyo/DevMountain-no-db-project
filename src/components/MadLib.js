@@ -1,31 +1,40 @@
 import {Component} from 'react'
 
-class Menu extends Component{
+class MadLib extends Component{
     constructor(){
         super();
 
         this.state = {
-            id: 0,
-            title: 'Butts',
-            entryItems : [
-                {noun: 'bird'},
-                {verb_ends_with_ing: 'flying'},
-                {noun: 'snake'},
-                {verb: 'fight'}
-              ],
-        
-              passage: `Watch the %%%% %%%% with the %%%%. Surely they will %%%% later`
+            finished: false
         }
+    }
+
+    toggleFinished=()=>{
+        this.setState({ finished: !this.state.finished })
+    }
+
+    updateEntry=(index, value)=>{
+
+    }
+
+    loadPassage=()=>{
+        let psg = this.state.passage;
+        for (let i = 0; i < this.state.entryItems.length; i++) {
+            for (const key in this.state.entryItems[i]) {
+            psg = psg.replace('%%%%', this.state.entryItems[i][key])
+            }
+        }
+        return psg;
     }
 
     render(){
 
         return(
-            <div>
-
+            <div className='madLib content'>
+                MADLIB
             </div>
         )
     }
 }
 
-export default Menu
+export default MadLib

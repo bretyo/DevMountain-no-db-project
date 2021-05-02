@@ -1,37 +1,75 @@
 import { Component } from 'react';
-import './App.css';
+import '../App.css';
+
+import axios from 'axios'
+import MadLib from './MadLib';
+import Menu from './Menu';
 
 class MadLibs extends Component {
   constructor(){
     super();
 
     this.state = {
-      entryItems : [
-        {noun: 'bird'},
-        {verb_ends_with_ing: 'flying'},
-        {noun: 'snake'},
-        {verb: 'fight'}
-      ],
-
-      passage: `Watch the %%%% %%%% with the %%%%. Surely they will %%%% later`
+        madLibs: [],
+        madLibsFinished: [],
+        madLibStarted: true,
+        madLibSelected: {}
     }
   }
 
-  loadPassage=()=>{
-    let psg = this.state.passage;
-    for (let i = 0; i < this.state.entryItems.length; i++) {
-      for (const key in this.state.entryItems[i]) {
-        psg = psg.replace('%%%%', this.state.entryItems[i][key])
-      }
-    }
-    return psg;
+  // * AXIOS FUNCTIONS
+
+  getMadLibs=()=>{
+      axios.get(`/api/madLibs`)
+      .then(res=>this.setState({ madLibs: res.data }))
+      .catch(err=>console.log(err))
+
+      axios.get(`/api/madLibsFinished`)
+      .then(res=>this.setState({ madLibsFinished: res.data }))
+      .catch(err=>console.log(err))
+  }
+
+  getMadLib=(id)=>{
+      axios.get(`/api/madLibs/${id}`)
+  }
+
+  deleteFinishedMadLib=(id)=>{
+      axios.delete(`/api/madLibsFinished/${id}`)
+      .then(res=>this.setState({ madLibsFinished: res.data }))
+      .catch(err=>console.log(err))
+  }
+
+  addFinishedMadLib=(madLib)=>{
+      axios.post(`/api/madLibsFinished`, madLib)
+      .then(res=>this.setState({ madLibsFinished: res.data }))
+      .catch(err=>console.log(err))
+  }
+
+  editFinishedMadLib=(id, changes)=>{
+      axios.put(`/api/madLibsFinished/${id}`, changes)
+      .then(res=>this.setState({ madLibsFinished: res.data }))
+      .catch(err=>console.log(err))
+  }
+
+  componentDidMount=()=>{
+    this.getMadLibs();
+    this.getMadLib(0);
+  }
+
+  toggleStarted=(madLib)=>{
+    this.setState({ madLibSelected: madLib, madLibStarted: !this.state.madLibStarted })
+  }
+
+  selectMadLib=(title)=>{
+
   }
 
   render(){
-
+    const {madLibStarted, madLibSelected} = this.state;
+    console.log(madLibStarted)
     return(
-        <div>
-            
+        <div className='madLibsMain'>
+            {!madLibStarted? <Menu toggleStarted={this.toggleStarted} deleteFinished={this.deleteFinishedMadLib} state={this.state} /> : <MadLib/>}
         </div>
     )
   }
