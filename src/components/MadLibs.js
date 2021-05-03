@@ -106,7 +106,7 @@ class MadLibs extends Component {
   updateEntries=(entryItems, title)=>{
     const {id, passage} = this.state.madLibSelected
     // const key = Object.keys(this.state.madLibSelected.entryItems[index])[0];
-    console.log(title)
+    // console.log(title)
     let entries = {
         id: id,
         title: title,
@@ -122,9 +122,14 @@ class MadLibs extends Component {
 
     }
 
+    
+
   render(){
+
+    
+
     const {madLibStarted, madLibSelected, madLibs} = this.state;
-    console.log(madLibSelected)
+    // console.log(madLibSelected)
     return(
         <div className='madLibsMain'>
             {!madLibStarted? <Menu 

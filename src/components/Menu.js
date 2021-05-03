@@ -12,8 +12,8 @@ class Menu extends Component{
     }
 
     selectTitle=(e)=>{
-        console.log(e.target)
-        console.log(+e.target[e.target.options.selectedIndex].id[0])
+        // console.log(e.target)
+        // console.log(+e.target[e.target.options.selectedIndex].id[0])
         const title = this.state.newLib==='new'? 
             {...this.props.state.madLibs[+e.target[e.target.options.selectedIndex].id[0]]}  : 
             {...this.props.state.madLibsFinished[+e.target[e.target.options.selectedIndex].id[0]]}
@@ -23,7 +23,7 @@ class Menu extends Component{
 
     // WEIRD EDGE CASE WHERE CHANGING RADIO BUTTONS DIDN'T RESET THE VALUE OF THE SELECTED TITLE
     reSelectTitle=(e)=>{
-        console.log(e.target.value)
+        // console.log(e.target.value)
         if(e.target.value==='new' && this.state.selectedTitle){
             this.setState({ selectedTitle: this.props.state.madLibs[this.state.selectedTitle.id]})
         }

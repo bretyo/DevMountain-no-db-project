@@ -23,7 +23,7 @@ class MadLib extends Component{
     }
 
     toggleFinished=()=>{
-        console.log(this.state.title)
+        // console.log(this.state.title)
         this.props.updateEntries(this.state.entryItems, this.state.title)
         this.setState({ finished: !this.state.finished })
     }
@@ -74,13 +74,13 @@ class MadLib extends Component{
         if(this.props.madLib.entryItems){
             entries = this.props.madLib.entryItems.map((element, index)=>{
                 for (const key in element) {
-                    return <Entry placeholder={element[key]} name={index} updateEntry={this.updateEntry} key={index} wordType={key} />
+                    return <Entry placeholder={element[key]} name={index} updateEntry={this.updateEntry} key={index} wordType={key.replace('_', ' ')} />
                 }
                 return null // Added this to get rid of a warning: "Line 42:72:  Array.prototype.map() expects a value to be returned at the end of arrow function  array-callback-return"
             })
         }
 
-        console.log(this.state.title)
+        // console.log(this.state.title)
         return(
             <div className='madLib content'>
                 {!this.state.finished? 
@@ -88,7 +88,7 @@ class MadLib extends Component{
                     {entries}
                 </div>
                 : <Finished title={this.state.title} passage={psg}/>}
-                <br/>
+                {/* <br/> */}
                 <div className='btnsGroup'>
                     <button onClick={()=>this.props.toggleStarted({}, '')} className='mLBtn'>Back To Menu</button>
                     {!this.state.finished?
