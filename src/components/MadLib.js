@@ -90,12 +90,18 @@ class MadLib extends Component{
                 : <Finished title={this.state.title} passage={psg}/>}
                 {/* <br/> */}
                 <div className='btnsGroup'>
-                    <button onClick={()=>this.props.toggleStarted({}, '')} className='mLBtn'>Back To Menu</button>
-                    {!this.state.finished?
-                        <button onClick={this.toggleFinished} className='mLBtn'>Submit</button> : 
-                        <button onClick={this.toggleFinished} className='mLBtn'>Edit Mad Lib</button>}
-                    {this.state.finished && 'Title: '}
-                    {this.state.finished &&  <input value={this.state.title} onChange={(e)=>this.handleTitle(e.target.value)}/>}
+                    <div className='btnsGroupLeft'>
+                        <button onClick={()=>this.props.toggleStarted({}, '')} className='mLBtn'>Back To Menu</button>
+                        {this.state.finished && <button onClick={this.toggleFinished} className='mLBtn'>Edit Current Mad Lib</button>}
+                    </div>
+
+                    {!this.state.finished &&<button onClick={this.toggleFinished} id='submitBtn' className='mLBtn'>Submit</button>}
+
+                    <div>
+                        {this.state.finished && 'Title: '}
+                        {this.state.finished &&  <input autoFocus='true' value={this.state.title} onChange={(e)=>this.handleTitle(e.target.value)}/>}
+                    </div>
+
                     {this.state.finished && <button onClick={this.handleSave}>Save Finished Mad Lib</button>}
                 </div>
             </div>

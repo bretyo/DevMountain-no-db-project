@@ -49,23 +49,26 @@ class Menu extends Component{
         // console.log(this.state.selectedTitle)
         return(
             <div className='menu content'>
-                <section onChange={this.onNewLibChange}>
-                    <input defaultChecked='true' value='new' name='madLibs' type='radio'/>New Mad Lib
-                    <input value='saved'  name='madLibs' type='radio'/>Saved Mad Lib
+                <section className='madLibRBtns' onChange={this.onNewLibChange}>
+                    <div>
+                        <input defaultChecked='true' value='new' name='madLibs' type='radio'/>New Mad Lib
+                    </div>
+                    <div>
+                        <input value='saved'  name='madLibs' type='radio'/>Saved Mad Lib
+                    </div>
                 </section>
                 <br/>
-                <select onChange={e=>this.selectTitle(e)}>
+                <select className='mLSelect' onChange={e=>this.selectTitle(e)}>
                     <option>--SELECT A MADLIB--</option>
                     {options}
                 </select>
-                {/* <h2>{psg}</h2>
-                <p>{key}</p>
-                
-                 */}
-                <Sample madLibSelected={this.props.madLibSelected}/>
 
-                {this.state.newLib==='saved' && <button onClick={()=>this.props.deleteFinished(this.state.selectedTitle.id)}>Delete</button>}
-                <button onClick={()=>this.props.toggleStarted(this.state.selectedTitle, this.state.newLib)}>Start</button>
+                <Sample madLibSelected={this.state.selectedTitle}/>
+                <div className='menuBtns'>
+                    {(this.state.newLib==='saved' && this.state.selectedTitle) && <button onClick={()=>this.props.deleteFinished(this.state.selectedTitle.id)}>Delete</button>}
+                    {this.state.selectedTitle && <button onClick={()=>this.props.toggleStarted(this.state.selectedTitle, this.state.newLib)}>Start</button>}
+                </div>
+
             </div>
         )
     }

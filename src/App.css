@@ -4,25 +4,112 @@
 
 body{
   background-color: teal;
+  font-family: 'Merriweather', serif;
 }
 
 header{
   background-color: aquamarine;
+  /* border-bottom: black 1px solid; */
+  padding-bottom: 5px;
+  -webkit-box-shadow: 0px 2px 5px 0px #000000; 
+  box-shadow: 0px 2px 5px 0px #000000;
+  height: 130px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items:flex-end;
+  flex-wrap: wrap;
+
+}
+
+header > p {
+  margin: 0;
 }
 
 h1{
+  font-size: 3rem;
   margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+input{
+  text-align: center;
+  font-size: 1rem;
+  text-align: center;
+  height: 30px;
+  /* border-radius: 5px; */
+  -webkit-box-shadow: 0px 0px 5px 0px #000000; 
+  box-shadow: 0px 0px 5px 0px #000000;
 }
 
 .madLibsMain{
   position: relative;
-  background-color: tomato;
+  /* background-color: tomato; */
   height: 80vh;
 }
 
 .menu{
-  
-  /* display: flex; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.madLibRBtns{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px;
+  width: 30%;
+}
+
+section > input{
+  /* margin-left: 200px; */
+}
+
+.mLSelect{
+  margin-bottom: 20px;
+  font-size: 1rem;
+  text-align: center;
+  height: 30px;
+  /* border-radius: 5px; */
+  -webkit-box-shadow: 0px 0px 5px 0px #000000; 
+  box-shadow: 0px 0px 5px 0px #000000;
+}
+
+.sample{
+  /* position: absolute; */
+  background-color:aquamarine;
+  /* left: 10%; */
+  width: 80%;
+  min-height: 40%;
+  /* border: black 2px inset; */
+  -webkit-box-shadow: 0px 0px 5px 2px #000000; 
+  box-shadow: 0px 0px 5px 2px #000000;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 20px;
+  border-radius: 20px;
+}
+
+button{
+  width: 100px;
+  height: 40px;
+  margin: 20px;
+  border: black 1px solid;
+  -webkit-box-shadow: 0px 0px 5px 2px #000000; 
+  box-shadow: 0px 0px 5px 0px #000000;
+  border-radius: 500px;
+}
+
+button:hover{
+  border: rgb(104, 252, 124) 1px solid;
+  -webkit-box-shadow: 0px 0px 5px 2px rgb(121, 245, 138); 
+  box-shadow: 0px 0px 5px 0px rgb(105, 243, 123);
 }
 
 .madLib{
@@ -35,19 +122,21 @@ h1{
 
 .content{
   position: absolute;
-  background-color: thistle;
+  background-color: rgb(46, 170, 170);
+  border: black 3px solid;
   width: 90%;
   height: 90%;
   top:5%;
   left: 5%;
+  
 }
 
 .entries{
-  background-color: rgb(46, 170, 170);
+  background-color: aquamarine;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 70%;
-  width: 100%;
+  width: 90%;
   align-items:center;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -55,6 +144,11 @@ h1{
 
 .entry > p{
   margin: 0;
+  /* width: 150px; */
+}
+
+.entry{
+  margin: 0 30px 0 30px;
 }
 
 .finished{
@@ -62,6 +156,42 @@ h1{
   background-color: rgb(98, 160, 129);
   height: 70%;
   width: 80%;
+  padding: 20px;
+  text-align: start;
+}
+.finished > h2{
+  font-size: 3rem;
+  margin: 10px;
+  text-align: center;
+}
+
+.finished > p{
+  font-size: 1.5rem;
+  line-height: 50px;
+}
+
+.btnsGroup{
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#submitBtn{
+  position: absolute;
+  right: 0;
+  align-self: flex-end;
+}
+
+.btnsGroup > input{
+  background-color:rgb(98, 160, 129)
+}
+
+.btnsGroupLeft{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .mLBtn{
