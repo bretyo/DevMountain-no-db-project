@@ -51,6 +51,7 @@ class MadLibs extends Component {
   }
 
   addFinishedMadLib=(madLib)=>{
+      console.log(madLib)
       axios.post(`/api/madLibsFinished`, madLib)
       .then(res=>this.setState({ madLibsFinished: res.data }))
       .catch(err=>console.log(err))
@@ -90,7 +91,7 @@ class MadLibs extends Component {
 
   handleSave=()=>{
       const {madLibSelected, madLibType} = this.state
-      console.log(madLibSelected, madLibType)
+    //   console.log(madLibSelected, madLibType)
     this.state.madLibType === 'new' ?
     this.addFinishedMadLib(madLibSelected) :
     this.editFinishedMadLib(madLibSelected.id, madLibSelected);
@@ -102,18 +103,24 @@ class MadLibs extends Component {
 
   }
 
-  updateEntries=(entryItems)=>{
-    const {id, title, passage} = this.state.madLibSelected
+  updateEntries=(entryItems, title)=>{
+    const {id, passage} = this.state.madLibSelected
     // const key = Object.keys(this.state.madLibSelected.entryItems[index])[0];
-    this.setState({ madLibSelected: 
-        {
-            id: id,
-            title: title,
-            entryItems: entryItems,
-            passage: passage
-        }
-    })
+    console.log(title)
+    let entries = {
+        id: id,
+        title: title,
+        entryItems: entryItems,
+        passage: passage
+    }
+    // console.log(entries)
+    this.setState({ madLibSelected: entries})
+    // console.log(this.state.madLibSelected)
 }
+
+    updateTitle=(title)=>{
+
+    }
 
   render(){
     const {madLibStarted, madLibSelected, madLibs} = this.state;

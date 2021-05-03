@@ -1,3 +1,4 @@
+
 import {Component} from 'react'
 import Entry from './Entry';
 import Finished from './Finished';
@@ -8,7 +9,8 @@ class MadLib extends Component{
 
         this.state = {
             finished: false,
-            entryItems: []
+            entryItems: [],
+            title: ''
         }
     }
 
@@ -17,10 +19,12 @@ class MadLib extends Component{
         entries = entries.map(element=>{
             return {...element}
         })
-        this.setState({ entryItems: entries })
+        this.setState({ entryItems: entries, title: this.props.madLib.title })
     }
 
     toggleFinished=()=>{
+        console.log(this.state.title)
+        this.props.updateEntries(this.state.entryItems, this.state.title)
         this.setState({ finished: !this.state.finished })
     }
 
@@ -47,14 +51,19 @@ class MadLib extends Component{
     }
 
     handleSave=()=>{
-        this.props.updateEntries(this.state.entryItems)
+        // this.props.updateEntries(this.state.entryItems)
         // console.log(this.props.madLib)
         this.props.handleSave(this.props.madLib, 'saved')
     }
 
     editEntriesUpdate=()=>{
-        this.props.updateEntries(this.state.entryItems)
+        
         this.toggleFinished();
+    }
+
+    handleTitle=(value)=>{
+        this.setState({ title: value})
+        this.props.updateEntries(this.state.entryItems, value)
     }
 
     render(){
@@ -71,20 +80,22 @@ class MadLib extends Component{
             })
         }
 
-        console.log(this.state.entryItems)
+        console.log(this.state.title)
         return(
             <div className='madLib content'>
                 {!this.state.finished? 
                 <div className="entries">
                     {entries}
                 </div>
-                : <Finished title={this.props.madLib.title} passage={psg}/>}
+                : <Finished title={this.state.title} passage={psg}/>}
                 <br/>
                 <div className='btnsGroup'>
                     <button onClick={()=>this.props.toggleStarted({}, '')} className='mLBtn'>Back To Menu</button>
                     {!this.state.finished?
                         <button onClick={this.toggleFinished} className='mLBtn'>Submit</button> : 
-                        <button onClick={this.editEntriesUpdate} className='mLBtn'>Edit Mad Lib</button>}
+                        <button onClick={this.toggleFinished} className='mLBtn'>Edit Mad Lib</button>}
+                    {this.state.finished && 'Title: '}
+                    {this.state.finished &&  <input value={this.state.title} onChange={(e)=>this.handleTitle(e.target.value)}/>}
                     {this.state.finished && <button onClick={this.handleSave}>Save Finished Mad Lib</button>}
                 </div>
             </div>

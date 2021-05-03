@@ -87,6 +87,7 @@ module.exports = {
     },
 
     addFinishedMadLib: (req, res)=>{
+        console.log(req.body)
         const {title, entryItems,passage} = req.body;
         if(!title || !entryItems || !passage){
             return    res.status(500).send('Needs a title, entry items, and passage')
