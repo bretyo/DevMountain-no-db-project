@@ -1,5 +1,4 @@
 function Sample(props){
-    console.log(props)
 
     let psg;
     if(props.madLibSelected && props.madLibSelected.passage) {( psg = props.madLibSelected.passage.split('%%%%')[0])}

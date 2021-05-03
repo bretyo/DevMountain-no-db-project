@@ -43,6 +43,10 @@ input{
   box-shadow: 0px 0px 5px 0px #000000;
 }
 
+.mLSelect{
+  width: 300px;
+}
+
 .madLibsMain{
   position: relative;
   /* background-color: tomato; */
@@ -62,10 +66,6 @@ input{
   justify-content: space-evenly;
   margin: 30px;
   width: 30%;
-}
-
-section > input{
-  /* margin-left: 200px; */
 }
 
 .mLSelect{
@@ -97,19 +97,22 @@ section > input{
 }
 
 button{
-  width: 100px;
+  background-color:rgba(121, 245, 138, 0);
+  width: 150px;
   height: 40px;
   margin: 20px;
   border: black 1px solid;
   -webkit-box-shadow: 0px 0px 5px 2px #000000; 
   box-shadow: 0px 0px 5px 0px #000000;
   border-radius: 500px;
+  font-size: 1rem;
 }
 
 button:hover{
-  border: rgb(104, 252, 124) 1px solid;
-  -webkit-box-shadow: 0px 0px 5px 2px rgb(121, 245, 138); 
-  box-shadow: 0px 0px 5px 0px rgb(105, 243, 123);
+  color: rgb(254, 255, 254);
+  border: rgb(255, 255, 255) 1px solid;
+  -webkit-box-shadow: 0px 0px 5px 2px rgb(228, 243, 91); 
+  box-shadow: 0px 0px 5px 0px rgb(244, 255, 145);
 }
 
 .madLib{
@@ -142,8 +145,8 @@ button:hover{
   flex-wrap: wrap;
 }
 
-.entry > p{
-  margin: 0;
+.entry > h4{
+  margin: 0 0 5px 0;
   /* width: 150px; */
 }
 
@@ -192,8 +195,4 @@ button:hover{
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.mLBtn{
-  /* align-self: flex-end; */
 }

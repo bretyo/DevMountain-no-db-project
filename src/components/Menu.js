@@ -59,7 +59,7 @@ class Menu extends Component{
                 </section>
                 <br/>
                 <select className='mLSelect' onChange={e=>this.selectTitle(e)}>
-                    <option>--SELECT A MADLIB--</option>
+                    <option> --SELECT A MADLIB-- </option>
                     {options}
                 </select>
 

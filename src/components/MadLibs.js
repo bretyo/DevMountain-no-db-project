@@ -51,7 +51,6 @@ class MadLibs extends Component {
   }
 
   addFinishedMadLib=(madLib)=>{
-      console.log(madLib)
       axios.post(`/api/madLibsFinished`, madLib)
       .then(res=>this.setState({ madLibsFinished: res.data }))
       .catch(err=>console.log(err))
@@ -128,7 +127,7 @@ class MadLibs extends Component {
 
     
 
-    const {madLibStarted, madLibSelected, madLibs} = this.state;
+    const {madLibStarted} = this.state;
     // console.log(madLibSelected)
     return(
         <div className='madLibsMain'>

@@ -22,7 +22,7 @@ class Entry extends Component{
 
         return(
             <div className='entry'>
-                <p>{this.props.wordType.replaceAll('_', ' ')}</p>
+                <h4>{this.props.wordType.replaceAll('_', ' ')}</h4>
                 <input placeholder={this.props.placeholder} value={this.state.inputVal} onChange={e=>this.handleChange(e.target.value)} /> 
             </div>
         )
