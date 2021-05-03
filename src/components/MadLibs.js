@@ -13,7 +13,8 @@ class MadLibs extends Component {
         madLibs: [],
         madLibsFinished: [],
         madLibStarted: false,
-        madLibSelected: {}
+        madLibSelected: {},
+        madLibType : ''
     }
   }
 
@@ -43,7 +44,8 @@ class MadLibs extends Component {
 }
 
   deleteFinishedMadLib=(id)=>{
-      axios.delete(`/api/madLibsFinished${id}`)
+      console.log(id)
+      axios.delete(`/api/madLibsFinished/${id}`)
       .then(res=>this.setState({ madLibsFinished: res.data }))
       .catch(err=>console.log(err))
   }
@@ -62,23 +64,37 @@ class MadLibs extends Component {
 
   componentDidMount=()=>{
     this.getMadLibs();
-    this.getMadLib(0);
+    // this.getMadLib(0);
   }
 
   toggleStarted=(madLib, libType)=>{
-    if(libType === 'new') {
-        console.log(this.state.madLibsFinished.length)
-        console.log(madLib.id)
-        madLib.id = this.state.madLibsFinished.length; 
-        this.addFinishedMadLib(madLib)
-        this.setState({ madLibSelected: madLib})
-    }
-    else {
-        console.log(this.state.madLibsFinished.length)
-        console.log(madLib.id)
-        this.editFinishedMadLib(madLib.id, madLib)
-    }
+    this.setState({ 
+        madLibType: libType,
+        madLibSelected: madLib,
+        madLibStarted: !this.state.madLibStarted 
+        })
+    // if(libType === 'new') {
+    //     // console.log(this.state.madLibsFinished.length)
+    //     // console.log(madLib.id)
+    //     // madLib.id = this.state.madLibsFinished.length;
+    //     this.setState({ madLibNew: libType })
+        
+    // }
+    // else {
+    //     // console.log(this.state.madLibsFinished.length)
+    //     // console.log(madLib.id)
+    //     // this.editFinishedMadLib(madLib.id, madLib)
+    // }
     // this.getFinishedMadLib(this.state.madLibsFinished.length)
+  }
+
+  handleSave=()=>{
+      const {madLibSelected, madLibType} = this.state
+      console.log(madLibSelected, madLibType)
+    this.state.madLibType === 'new' ?
+    this.addFinishedMadLib(madLibSelected) :
+    this.editFinishedMadLib(madLibSelected.id, madLibSelected);
+
     this.setState({ madLibStarted: !this.state.madLibStarted })
   }
 
@@ -86,25 +102,22 @@ class MadLibs extends Component {
 
   }
 
-  updateEntry=(index, value)=>{
-      const {id, title, entryItems, passage} = this.state.madLibSelected
-    const newEntryItems = [...this.state.madLibSelected.entryItems]
+  updateEntries=(entryItems)=>{
+    const {id, title, passage} = this.state.madLibSelected
     // const key = Object.keys(this.state.madLibSelected.entryItems[index])[0];
-    for (const key in newEntryItems[index]) {
-        newEntryItems[index][key] = value
-    }
     this.setState({ madLibSelected: 
         {
             id: id,
             title: title,
-            entryItems: newEntryItems,
+            entryItems: entryItems,
             passage: passage
         }
     })
 }
 
   render(){
-    const {madLibStarted, madLibSelected} = this.state;
+    const {madLibStarted, madLibSelected, madLibs} = this.state;
+    console.log(madLibSelected)
     return(
         <div className='madLibsMain'>
             {!madLibStarted? <Menu 
@@ -115,7 +128,8 @@ class MadLibs extends Component {
                             : <MadLib
                                 madLib={this.state.madLibSelected}
                                 toggleStarted={this.toggleStarted}
-                                updateEntry={this.updateEntry}
+                                updateEntries={this.updateEntries}
+                                handleSave={this.handleSave}
                                 />}
         </div>
     )

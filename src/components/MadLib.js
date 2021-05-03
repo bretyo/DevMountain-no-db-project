@@ -1,18 +1,24 @@
 import {Component} from 'react'
 import Entry from './Entry';
 import Finished from './Finished';
+import _ from 'lodash';
 
 class MadLib extends Component{
     constructor(){
         super();
 
         this.state = {
-            finished: false
+            finished: false,
+            entryItems: []
         }
     }
 
     componentDidMount(){
-        this.setState({ entryItems: this.props.madLib.entryItems })
+        let entries = [...this.props.madLib.entryItems];
+        entries = entries.map(element=>{
+            return {...element}
+        })
+        this.setState({ entryItems: entries })
     }
 
     toggleFinished=()=>{
@@ -20,15 +26,20 @@ class MadLib extends Component{
     }
 
     updateEntry=(index, value)=>{
-        this.props.updateEntry(index, value)
+        const newEntryItems = [...this.state.entryItems]
+        // const key = Object.keys(this.state.madLibSelected.entryItems[index])[0];
+        for (const key in newEntryItems[index]) {
+            newEntryItems[index][key] = value
+        }
+        this.setState({ entryItems: newEntryItems })
     }
 
     loadPassage=()=>{
         if(this.props.madLib.passage){
             let psg = this.props.madLib.passage;
-            for (let i = 0; i < this.props.madLib.entryItems.length; i++) {
-                for (const key in this.props.madLib.entryItems[i]) {
-                psg = psg.replace('%%%%', this.props.madLib.entryItems[i][key])
+            for (let i = 0; i < this.state.entryItems.length; i++) {
+                for (const key in this.state.entryItems[i]) {
+                psg = psg.replace('%%%%', this.state.entryItems[i][key])
                 }
             }
             return psg;
@@ -37,8 +48,14 @@ class MadLib extends Component{
     }
 
     handleSave=()=>{
-        console.log(this.props.madLib)
-        this.props.toggleStarted(this.props.madLib, 'saved')
+        this.props.updateEntry(this.state.entryItems)
+        // console.log(this.props.madLib)
+        this.props.handleSave(this.props.madLib, 'saved')
+    }
+
+    editEntriesUpdate=()=>{
+        this.props.updateEntries(this.state.entryItems)
+        this.toggleFinished();
     }
 
     render(){
@@ -55,6 +72,7 @@ class MadLib extends Component{
             })
         }
 
+        console.log(this.state.entryItems)
         return(
             <div className='madLib content'>
                 {!this.state.finished? 
@@ -64,10 +82,10 @@ class MadLib extends Component{
                 : <Finished title={this.props.madLib.title} passage={psg}/>}
                 <br/>
                 <div className='btnsGroup'>
-                    <button onClick={this.props.toggleStarted} className='mLBtn'>Back To Menu</button>
+                    <button onClick={()=>this.props.toggleStarted({}, '')} className='mLBtn'>Back To Menu</button>
                     {!this.state.finished?
                         <button onClick={this.toggleFinished} className='mLBtn'>Submit</button> : 
-                        <button onClick={this.toggleFinished} className='mLBtn'>Edit Mad Lib</button>}
+                        <button onClick={this.editEntriesUpdate} className='mLBtn'>Edit Mad Lib</button>}
                     {this.state.finished && <button onClick={this.handleSave}>Save Finished Mad Lib</button>}
                 </div>
             </div>

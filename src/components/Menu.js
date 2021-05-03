@@ -1,5 +1,7 @@
 import {Component} from 'react'
 import Sample from './Sample'
+import lodash from 'lodash'
+import _ from 'lodash';
 
 class Menu extends Component{
     constructor(){
@@ -12,14 +14,13 @@ class Menu extends Component{
     }
 
     selectTitle=(e)=>{
-        // console.log(e.target)
-        // console.log(+e.target[e.target.options.selectedIndex].id[0])
-        if(this.state.newLib === 'new'){
-            this.setState({ selectedTitle: this.props.state.madLibs[+e.target[e.target.options.selectedIndex].id[0]]})
-        }
-        else{
-            this.setState({ selectedTitle: this.props.state.madLibsFinished[+e.target[e.target.options.selectedIndex].id[0]]})
-        }
+        console.log(e.target)
+        console.log(+e.target[e.target.options.selectedIndex].id[0])
+        const title = this.state.newLib==='new'? 
+            _.cloneDeep(this.props.state.madLibs[+e.target[e.target.options.selectedIndex].id[0]])  : 
+            _.cloneDeep(this.props.state.madLibsFinished[+e.target[e.target.options.selectedIndex].id[0]])
+        this.setState({ selectedTitle: title })
+        
     }
 
     // WEIRD EDGE CASE WHERE CHANGING RADIO BUTTONS DIDN'T RESET THE VALUE OF THE SELECTED TITLE
@@ -47,7 +48,7 @@ class Menu extends Component{
                 return <option id={element.id + 'option'} key={index}>{element.title}</option>
             })
         } 
-        console.log(this.state.selectedTitle)
+        // console.log(this.state.selectedTitle)
         return(
             <div className='menu content'>
                 <section onChange={this.onNewLibChange}>
