@@ -1,7 +1,6 @@
 import {Component} from 'react'
 import Entry from './Entry';
 import Finished from './Finished';
-import _ from 'lodash';
 
 class MadLib extends Component{
     constructor(){
@@ -48,7 +47,7 @@ class MadLib extends Component{
     }
 
     handleSave=()=>{
-        this.props.updateEntry(this.state.entryItems)
+        this.props.updateEntries(this.state.entryItems)
         // console.log(this.props.madLib)
         this.props.handleSave(this.props.madLib, 'saved')
     }

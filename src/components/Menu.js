@@ -1,7 +1,5 @@
 import {Component} from 'react'
 import Sample from './Sample'
-import lodash from 'lodash'
-import _ from 'lodash';
 
 class Menu extends Component{
     constructor(){
@@ -17,8 +15,8 @@ class Menu extends Component{
         console.log(e.target)
         console.log(+e.target[e.target.options.selectedIndex].id[0])
         const title = this.state.newLib==='new'? 
-            _.cloneDeep(this.props.state.madLibs[+e.target[e.target.options.selectedIndex].id[0]])  : 
-            _.cloneDeep(this.props.state.madLibsFinished[+e.target[e.target.options.selectedIndex].id[0]])
+            {...this.props.state.madLibs[+e.target[e.target.options.selectedIndex].id[0]]}  : 
+            {...this.props.state.madLibsFinished[+e.target[e.target.options.selectedIndex].id[0]]}
         this.setState({ selectedTitle: title })
         
     }
