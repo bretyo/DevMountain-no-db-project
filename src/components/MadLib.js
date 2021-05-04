@@ -69,7 +69,7 @@ class MadLib extends Component{
     }
 
     handleBackToMenu=()=>{
-        this.props.toggleFridged();
+        this.state.finished && this.props.toggleFridged();
         this.props.toggleStarted({}, '')
     }
 

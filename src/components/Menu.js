@@ -57,10 +57,10 @@ class Menu extends Component{
             <div className='menu content'>
                 <section className='madLibRBtns' onChange={this.onNewLibChange}>
                     <div>
-                        <input defaultChecked='true' value='new' name='madLibs' type='radio'/>New Mad Lib
+                        <input id='newBtn' defaultChecked='true' value='new' name='madLibs' type='radio'/><label htmlFor='newBtn'>New Mad Lib</label>
                     </div>
                     <div>
-                        <input value='saved'  name='madLibs' type='radio'/>Saved Mad Lib
+                        <input id='savedBtn' value='saved'  name='madLibs' type='radio'/><label htmlFor='savedBtn'>Saved Mad Lib</label>
                     </div>
                 </section>
                 <br/>

@@ -36,6 +36,96 @@ let madLibs = [
         The %%%% %%%% in opera is presented using the primary elements of theater such as %%%%, costumes, and %%%%. \
         However, the words of the opera, or libretto, are %%%% rather than spoken. \
         The singers are accompanied by a musical %%%% ranging from a small instrumental %%%% to a full symphonic %%%%.'
+    },
+    {
+        id: 2,
+        title: 'The Crocodile',
+        entryItems: [
+            { adjective: '' },
+            { plural_noun: '' },
+            { adjective: '' },
+            { adverb: '' },
+            { plural_body_part: '' },
+            { plural_noun: '' },
+            { verb_ending_with_ing: '' },
+        ],
+        passage: 'How doth the little crocodile\
+        Improve his %%%% tail,\
+        And pour the %%%% of the Nile\
+        On every %%%% scale!\
+        How %%%% he seems to grin,\
+        How neatly spreads his %%%%,\
+        And welcomes little %%%% in,\
+        With gently %%%% jaws!'
+    },
+    {
+        id: 3,
+        title: 'Pulp Fiction',
+        entryItems: [
+            { noun: '' },
+            { place: ''},
+            { mean_name: ''},
+            { celebrity: ''},
+            { noun: ''},
+            { silly_nickname: ''},
+            { adjective: ''},
+            { adjective: ''},
+            { adjective: ''},
+            { noun: ''},
+            { mildly_violent_verb_ends_with_s: ''},
+            { verb_ending_with_ing: ''},
+            { noun: ''},
+            { verb: ''},
+            { verb_past_tense: ''}
+        ],
+        passage: `Jules: What does Marsellus Wallace look like?
+        Brett: ..What?
+        Jules: \[angrily throws the %%%% in the room] What %%%% are you from!?
+        Brett: Wha-what?
+        Jules: "What" ain't no country I ever heard of! They speak English in "What"!?
+        Brett: What?
+        Jules: ENGLISH, %%%% DO YOU SPEAK IT!?
+        Brett: Yes!!
+        Jules: THEN YOU KNOW WHAT I’M SAYING!
+        Brett: Yes..!
+        Jules: DESCRIBE WHAT %%%% LOOKS LIKE!
+        Brett: Wha-what I—?
+        Jules: [points %%%% directly in Brett's face] SAY "WHAT" AGAIN! SAY "WHAT" AGAIN! I DARE YOU! I DOUBLE-DARE YOU, %%%% SAY "WHAT" ONE MORE %%%% TIME!
+        Brett: H-H-He's %%%%...
+        Jules: GO ON!
+        Brett: ...He's %%%%...!
+        Jules: Does he look like a %%%%?!
+        Brett: What? [Jules %%%% Brett in the shoulder] AGHH!! Anh..!!
+        Jules: [%%%% at the top of his lungs] DOES! HE! LOOK!... LIKE! A %%%%?!?!
+        Brett: NO!
+        Jules: Then why'd you try to %%%% him like one, Brett?
+        Brett: I didn't...!
+        Jules: Yes, you did! YES, you DID, Brett!
+        Brett: No... no....
+        Jules But Marsellus Wallace don't like to be %%%% by anybody except Mrs. Wallace.`
+    },
+    {
+        id:4,
+        title: 'The Star Wars Tragedy',
+        entryItems: [
+            { silly_nickname: ''},
+            { group_of_people: ''},
+            { animal: ''},
+            { plural_noun: ''},
+            { verb_ending_with_ing: ''}, 
+            { plural_noun: ''},
+            { body_part: ''},
+            { house_pet: ''},
+            { celebrity: ''}
+        ],
+        passage: `Did you ever hear the tragedy of Darth %%%% The Wise? I thought not. It’s not a story the %%%% would tell you. 
+        It’s a Sith legend. He was a Dark %%%% of the Sith, so powerful and so wise he could 
+        use %%%% to influence the midichlorians to create life… 
+        He had such a knowledge of the dark side that he could even keep the ones he cared about from %%%%. 
+        The dark side of the Force is a pathway to many %%%% some consider to be unnatural. 
+        He became so powerful… the only thing he was afraid of was losing his %%%%, which eventually, of course, he did. 
+        Unfortunately, he taught his apprentice everything he knew, then his %%%% killed him in his sleep. 
+        Ironic. He could save %%%% from death, but not himself.`
     }
 ]
 
