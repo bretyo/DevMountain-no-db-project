@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/Header';
 import MadLibs from './components/MadLibs';
 import shelf from './blurrybookshelf.png'
-import fridge from './fridge-door-texture-appliance-background-32842800.jpg'
+import fridge from './Gfp-fridge-door-texture.jpg'
 import { Component } from 'react';
 
 

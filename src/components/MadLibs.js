@@ -77,19 +77,6 @@ class MadLibs extends Component {
         madLibSelected: madLib,
         madLibStarted: !this.state.madLibStarted 
         })
-    // if(libType === 'new') {
-    //     // console.log(this.state.madLibsFinished.length)
-    //     // console.log(madLib.id)
-    //     // madLib.id = this.state.madLibsFinished.length;
-    //     this.setState({ madLibNew: libType })
-        
-    // }
-    // else {
-    //     // console.log(this.state.madLibsFinished.length)
-    //     // console.log(madLib.id)
-    //     // this.editFinishedMadLib(madLib.id, madLib)
-    // }
-    // this.getFinishedMadLib(this.state.madLibsFinished.length)
   }
 
   handleSave=()=>{
