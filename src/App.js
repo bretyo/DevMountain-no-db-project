@@ -1,19 +1,36 @@
 import './App.css';
 import Header from './components/Header';
 import MadLibs from './components/MadLibs';
-import shelf from './800px_COLOURBOX2306258.jpg'
+import shelf from './blurrybookshelf.png'
+import fridge from './fridge-door-texture-appliance-background-32842800.jpg'
+import { Component } from 'react';
 
 
 
-function App () {
-  
+class App extends Component {
+  constructor(){
+    super();
+
+    this.state={
+      fridged: false
+    }
+  }
+
+  toggleFridged=()=>{
+    this.setState({ fridged: !this.state.fridged})
+  }
+
+  render(){
     return (
-      <div style={{ 'backgroundImage': `url(${shelf})`, 'backgroundSize': 'cover'}} className="App">
+      <div style={{ 'backgroundImage': `url(${!this.state.fridged? shelf: fridge})`, 'backgroundSize': 'cover'}} className="App">
         <Header/>
-        <MadLibs/>
+        <MadLibs toggleFridged={this.toggleFridged}/>
         
       </div>
     );
+
+  }
+  
   
 }
 

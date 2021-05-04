@@ -9,8 +9,8 @@ import shelf from '../800px_COLOURBOX2306258.jpg'
 
 
 class MadLibs extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.state = {
         madLibs: [],
@@ -121,9 +121,9 @@ class MadLibs extends Component {
     // console.log(this.state.madLibSelected)
 }
 
-    updateTitle=(title)=>{
-
-    }
+  toggleFridged=()=>{
+    this.props.toggleFridged();
+  }
 
     
 
@@ -144,6 +144,7 @@ class MadLibs extends Component {
                                 toggleStarted={this.toggleStarted}
                                 updateEntries={this.updateEntries}
                                 handleSave={this.handleSave}
+                                toggleFridged={this.toggleFridged}
                                 />}
         </div>
     )

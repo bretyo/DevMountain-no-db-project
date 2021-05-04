@@ -24,6 +24,7 @@ class MadLib extends Component{
 
     toggleFinished=()=>{
         // console.log(this.state.title)
+        this.props.toggleFridged();
         this.props.updateEntries(this.state.entryItems, this.state.title)
         this.setState({ finished: !this.state.finished })
     }
@@ -53,6 +54,7 @@ class MadLib extends Component{
     handleSave=()=>{
         // this.props.updateEntries(this.state.entryItems)
         // console.log(this.props.madLib)
+        this.props.toggleFridged();
         this.props.handleSave(this.props.madLib, 'saved')
     }
 
@@ -64,6 +66,11 @@ class MadLib extends Component{
     handleTitle=(value)=>{
         this.setState({ title: value})
         this.props.updateEntries(this.state.entryItems, value)
+    }
+
+    handleBackToMenu=()=>{
+        this.props.toggleFridged();
+        this.props.toggleStarted({}, '')
     }
 
     render(){
@@ -91,7 +98,7 @@ class MadLib extends Component{
                 {/* <br/> */}
                 <div className='btnsGroup'>
                     <div className='btnsGroupLeft'>
-                        <button onClick={()=>this.props.toggleStarted({}, '')} className='mLBtn'>Back To Menu</button>
+                        <button onClick={this.handleBackToMenu} className='mLBtn'>Back To Menu</button>
                         {this.state.finished && <button onClick={this.toggleFinished} className='mLBtn'>Edit Current Mad Lib</button>}
                     </div>
 
