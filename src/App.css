@@ -1,30 +1,39 @@
+
+
 .App {
   text-align: center;
+  height: 100vh;
 }
 
 body{
-  background-color: teal;
+  /* background: url('./fridge-door-texture-appliance-background-32842800.jpg') no-repeat;
+  background-size: cover; */
+  /* height: 100vh; */
   font-family: 'Merriweather', serif;
+  
 }
 
 header{
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
+  background-color:rgb(230, 192, 142);
   /* border-bottom: black 1px solid; */
   padding-bottom: 5px;
   -webkit-box-shadow: 0px 2px 5px 0px #000000; 
   box-shadow: 0px 2px 5px 0px #000000;
-  height: 130px;
+  height: 14vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items:flex-end;
   flex-wrap: wrap;
-
+  /* z-index: 2; */
 }
 
 header > p {
   margin: 0;
 }
+
+
 
 h1{
   font-size: 3rem;
@@ -50,23 +59,39 @@ input{
 .madLibsMain{
   position: relative;
   /* background-color: tomato; */
-  height: 80vh;
+  height: 85vh;
 }
 
 .menu{
+  /* background-color: rosybrown; */
   position: relative;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+  /* justify-content: center; */
 }
 
 .madLibRBtns{
+  background-color: rgb(230, 192, 142);
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 5px 0px #000000; 
+  box-shadow: 0px 0px 5px 0px #000000;
   display: flex;
   justify-content: space-evenly;
+  align-content: center;
   margin: 30px;
   width: 30%;
 }
+
+.madLibRBtns > div {
+  
+  display: flex;
+  align-items: center;
+  width: 150px;
+  justify-content: space-evenly;
+}
+
 
 .mLSelect{
   margin-bottom: 20px;
@@ -80,7 +105,7 @@ input{
 
 .sample{
   /* position: absolute; */
-  background-color:aquamarine;
+  background-color:rgb(230, 192, 142);
   /* left: 10%; */
   width: 80%;
   min-height: 40%;
@@ -97,9 +122,9 @@ input{
 }
 
 button{
-  background-color:rgba(121, 245, 138, 0);
+  background-color:rgb(230, 192, 142);
   width: 150px;
-  height: 40px;
+  height: 60px;
   margin: 20px;
   border: black 1px solid;
   -webkit-box-shadow: 0px 0px 5px 2px #000000; 
@@ -125,8 +150,8 @@ button:hover{
 
 .content{
   position: absolute;
-  background-color: rgb(46, 170, 170);
-  border: black 3px solid;
+  /* background-color: rgb(46, 170, 170); */
+  /* border: black 3px solid; */
   width: 90%;
   height: 90%;
   top:5%;
@@ -135,7 +160,9 @@ button:hover{
 }
 
 .entries{
-  background-color: aquamarine;
+  background-color: rgb(230, 192, 142);
+  -webkit-box-shadow: 0px 0px 5px 2px #000000; 
+  box-shadow: 0px 0px 5px 2px #000000;
   display: flex;
   flex-direction: row;
   height: 70%;
@@ -154,17 +181,35 @@ button:hover{
   margin: 0 30px 0 30px;
 }
 
+.finishedBG{
+  background: url('./fridge.jpg') center no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
 .finished{
   margin-top: 20px;
-  background-color: rgb(98, 160, 129);
-  height: 70%;
+  box-sizing: border-box;
+  border: rgb(187, 150, 101) 10px groove;
+  border-style: groove ridge ridge groove;
+  background: url('./book-bacground.jpg') no-repeat center;
+  background-size:cover;
+  /* background-color: rgb(98, 160, 129); */
+  height: 80%;
   width: 80%;
   padding: 20px;
   text-align: start;
+  /* position:relative */
+  /* overflow-y: auto; */
+
 }
 .finished > h2{
+  /* position: absolute; */
   font-size: 3rem;
-  margin: 10px;
+  margin: 0 0 10px 0;
+  left: 25%;
+  /* margin-left: 200px; */
   text-align: center;
 }
 
@@ -175,10 +220,10 @@ button:hover{
 
 .btnsGroup{
   position: relative;
-  width: 100%;
+  width: 80%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content:space-between;
 }
 
 #submitBtn{
@@ -188,7 +233,11 @@ button:hover{
 }
 
 .btnsGroup > input{
-  background-color:rgb(98, 160, 129)
+  background-color:rgb(98, 160, 129);
+}
+#titleInput{
+  margin-right: 200px;
+  font-size: 1.5rem;
 }
 
 .btnsGroupLeft{

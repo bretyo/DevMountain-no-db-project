@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import MadLibOption from './MadLibOption';
 import Sample from './Sample'
 
 class Menu extends Component{
@@ -38,15 +39,20 @@ class Menu extends Component{
 
     }
 
+    handleDelete=()=>{
+        this.state.selectedTitle && this.props.deleteFinished(this.state.selectedTitle.id)
+        this.setState({selectedTitle: null})
+    }
+
     render(){
         const {state} = this.props;
         let options = this.state.newLib==='new'? state.madLibs : state.madLibsFinished;
         if(options){
             options = options.map((element, index)=>{
-                return <option id={element.id + 'option'} key={index}>{element.title}</option>
+                return <MadLibOption elTitle={element.title} key={index} id={element.id + 'option'}/>
             })
         } 
-        // console.log(this.state.selectedTitle)
+        console.log(this.state.selectedTitle)
         return(
             <div className='menu content'>
                 <section className='madLibRBtns' onChange={this.onNewLibChange}>
@@ -65,7 +71,7 @@ class Menu extends Component{
 
                 <Sample madLibSelected={this.state.selectedTitle}/>
                 <div className='menuBtns'>
-                    {(this.state.newLib==='saved' && this.state.selectedTitle) && <button onClick={()=>this.props.deleteFinished(this.state.selectedTitle.id)}>Delete</button>}
+                    {(this.state.newLib==='saved' && this.state.selectedTitle) && <button onClick={this.handleDelete}>Delete</button>}
                     {this.state.selectedTitle && <button onClick={()=>this.props.toggleStarted(this.state.selectedTitle, this.state.newLib)}>Start</button>}
                 </div>
 

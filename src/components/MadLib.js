@@ -97,9 +97,9 @@ class MadLib extends Component{
 
                     {!this.state.finished &&<button onClick={this.toggleFinished} id='submitBtn' className='mLBtn'>Submit</button>}
 
-                    <div>
+                    <div id='titleInput'> 
                         {this.state.finished && 'Title: '}
-                        {this.state.finished &&  <input autoFocus='true' value={this.state.title} onChange={(e)=>this.handleTitle(e.target.value)}/>}
+                        {this.state.finished &&  <input autoFocus={true} value={this.state.title} onChange={(e)=>this.handleTitle(e.target.value)}/>}
                     </div>
 
                     {this.state.finished && <button onClick={this.handleSave}>Save Finished Mad Lib</button>}

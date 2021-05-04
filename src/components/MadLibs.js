@@ -4,6 +4,9 @@ import '../App.css';
 import axios from 'axios'
 import MadLib from './MadLib';
 import Menu from './Menu';
+import fridge from '../fridge-door-texture-appliance-background-32842800.jpg';
+import shelf from '../800px_COLOURBOX2306258.jpg'
+
 
 class MadLibs extends Component {
   constructor(){
@@ -14,7 +17,8 @@ class MadLibs extends Component {
         madLibsFinished: [],
         madLibStarted: false,
         madLibSelected: {},
-        madLibType : ''
+        madLibType : '',
+        bg: 'shelf'
     }
   }
 
@@ -126,7 +130,6 @@ class MadLibs extends Component {
   render(){
 
     
-
     const {madLibStarted} = this.state;
     // console.log(madLibSelected)
     return(

@@ -267,7 +267,7 @@ class Header extends Component{
         return(
             <header>
                 <h1>MAD LIBS!</h1>
-                <p>the {this.state.animal.toUpperCase()} jumped over the {this.state.noun.toUpperCase()}</p>
+                <p onClick={this.changeHeaderWords}>the {this.state.animal.toUpperCase()} jumped over the {this.state.noun.toUpperCase()}</p>
             </header>
         )
     }
